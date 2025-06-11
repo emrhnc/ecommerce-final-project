@@ -3,10 +3,6 @@ services:
     name: medipol-ecommerce-final-project
     runtime: docker
     plan: free
-    # --- BU İKİ SATIR EKSİK VE ÇOK ÖNEMLİ ---
-    buildCommand: "./mvnw clean package -DskipTests"
-    startCommand: "java -jar target/ECommerceFinal-0.0.1-SNAPSHOT.jar"
-    # -----------------------------------------
     envVars:
       - key: spring.jpa.database-platform
         value: org.hibernate.dialect.PostgreSQLDialect
