@@ -1,0 +1,17 @@
+services:
+  # Bu, web servisimiz için bir tanımdır
+  - type: web
+    name: medipol-ecommerce-final-project # Render'daki servis ismin. Değiştirebilirsin.
+    env: java # BU EN ÖNEMLİ SATIR! Çalışma ortamının Java olduğunu belirtir.
+    plan: free # Ücretsiz planı kullandığımızı belirtiyoruz.
+    buildCommand: "./mvnw clean package -DskipTests" # Projeyi derleme komutu
+    startCommand: "java -jar target/ECommerceFinal-0.0.1-SNAPSHOT.jar" # Derlenen .jar dosyasını çalıştırma komutu
+    envVars:
+      - key: spring.jpa.database-platform # Veritabanı tipi
+        value: org.hibernate.dialect.PostgreSQLDialect
+      - key: DATABASE_URL # Veritabanı bağlantı adresi
+        fromDatabase:
+          name: ecommerce-db # Render'da oluşturduğun PostgreSQL veritabanının adı
+          property: connectionString
+      - key: JAVA_VERSION # Java sürümünü belirtmek her zaman iyidir
+        value: 17
